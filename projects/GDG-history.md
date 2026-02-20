@@ -23,11 +23,13 @@ This system ensures continuity, transparency, and efficient collaboration across
 
 ---
 
-## Core Features
+# Core Features
 
-### 1. Historical Archive
+---
 
-#### Past Years’ Projects
+## 1. Historical Archive
+
+### Past Years’ Projects
 - Project title
 - Year and duration
 - Description and objectives
@@ -36,14 +38,14 @@ This system ensures continuity, transparency, and efficient collaboration across
 - GitHub repository links
 - Project status (completed / archived)
 
-#### Past Members & Roles
+### Past Members & Roles
 - Member name
 - Role (Lead, Co-Lead, Mentor, Member, etc.)
 - Year(s) active
 - Team or domain
 - Contributions and projects
 
-#### Documents & Discussions
+### Documents & Discussions
 - Meeting notes
 - Event reports
 - Internal guidelines
@@ -51,9 +53,9 @@ This system ensures continuity, transparency, and efficient collaboration across
 
 ---
 
-### 2. Current Year Management
+## 2. Current Year Management
 
-#### Team Management
+### Team Management
 - Create and manage teams
 - Assign roles:
   - Lead
@@ -62,7 +64,7 @@ This system ensures continuity, transparency, and efficient collaboration across
   - Member
 - Track team membership changes over time
 
-#### Project Management
+### Project Management
 - Create new projects
 - Assign teams and mentors
 - Define milestones and timelines
@@ -71,58 +73,163 @@ This system ensures continuity, transparency, and efficient collaboration across
 
 ---
 
-### 3. Learning Tracks & Classes
-
-The platform supports GDG AASTU’s learning programs:
-
-#### Supported Tracks
-- Frontend Development
-- Backend Development
-- Mobile Development
-- Data Structures & Algorithms
-
-#### Class Management
-- Course descriptions
-- Weekly lesson plans
-- Instructors / mentors
-- Attendance tracking (optional)
-- Learning resources (slides, links, recordings)
+# GDG – Technical Overview (Version 2 Expansion)
 
 ---
 
-### 4. Member Activity Tracking
+## 1. Learning Tracks (8 Total)
 
-- Track what members are currently working on
-- Assigned projects and learning tracks
-- Participation in discussions and teams
-- Progress across semesters or years
+The platform supports the following learning tracks:
 
----
-
-## User Roles & Permissions
-
-### Admin
-- Full access to all features
-- Manage users, teams, projects, and documents
-
-### Leads / Co-Leads
-- Manage teams and projects
-- Upload documents
-- Track member progress
-
-### Mentors
-- Supervise projects
-- Add feedback and resources
-- Track assigned teams
-
-### Members
-- View projects and learning materials
-- Update personal progress
-- Participate in assigned teams
+1. React  
+2. Flutter  
+3. Node.js  
+4. Django  
+5. Web3  
+6. Beginner Track  
+7. Machine Learning (ML)  
+8. Data Structures & Algorithms (DSA)  
 
 ---
 
-## Tech Stack (Proposed)
+## 2. Task Submission System
+
+### For Tracks 1–7 (React → ML)
+
+- Students submit work using **GitHub repository links**
+- Students are grouped under assigned mentors
+- Mentors:
+  - Review submissions
+  - Provide feedback
+  - Approve or request improvements
+
+---
+
+### For Track 8 – Data Structures & Algorithms (DSA)
+
+When a student submits a correct solution:
+
+- The system automatically records it
+- The solution is added directly to the student’s progress
+- No manual submission is required
+
+This ensures:
+- Automation
+- Real-time progress tracking
+- Accuracy of solved problems
+
+---
+
+## 3. Attendance System
+
+Attendance is tracked in two modes:
+
+### A. In-Person Attendance
+- Attendance is manually submitted
+- If a student is not physically present → marked **Absent**
+
+---
+
+### B. Online (Virtual) Attendance
+Attendance is automatically calculated.
+
+A student is marked **Absent** if:
+
+- They attend less than **50% of the session**
+  - Example: 25 minutes of a 1-hour class
+- They join late and miss a significant portion
+
+⚠️ **Excused absences (approved by mentors) are NOT counted as absences**
+
+---
+
+## 4. Attendance Rules & Elimination Policy
+
+Absence tracking follows this system:
+
+- 🟢 **1 Absence** → Warning  
+- 🟡 **2 Absences** → Final Warning  
+- 🔴 **3 Absences** → Student eliminated from the course  
+
+This ensures discipline and commitment across all tracks.
+
+---
+
+## 5. Point (Coin) System
+
+Students earn coins based on performance and participation:
+
+- Attend a class → **1 coin**
+- Perform well (mentor promotion) → **2 coins**
+- Outshine others in the track → **3 coins**
+
+➡️ A high-performing student can earn up to **6 coins per week**
+
+This system encourages:
+- Active participation
+- Healthy competition
+- Consistent improvement
+
+---
+
+## 6. Course Scheduling & Content Management
+
+- Courses are updated every year
+- New and improved programs are prepared annually
+- New slides are created each year
+- Slides are:
+  - Released **1 day early for mentors**
+  - Released **on class day for students**
+- Mentors are assigned before the academic year starts
+
+---
+
+# User Roles & Permissions (Updated)
+
+---
+
+## 1. Technical Lead
+- Full access to all tracks
+- System-wide control
+- Can manage leads, mentors, and students
+- Oversee elimination policies
+
+---
+
+## 2. Track Leads
+Access limited to their specific track.
+
+Can:
+- Manage students
+- Assign mentors
+- Eliminate students with excess absences
+- Monitor performance metrics
+
+---
+
+## 3. Mentors
+Directly connected with students.
+
+Can:
+- Review submissions
+- Provide feedback
+- Mark attendance
+- Approve excused absences
+- Recommend coin rewards
+
+---
+
+## 4. Students
+Can:
+- View attendance records
+- Submit tasks
+- Track progress
+- View earned coins
+- Send heads-up messages (notifications/explanations to mentors)
+
+---
+
+# Tech Stack (Proposed)
 
 ### Frontend
 - React / Next.js
@@ -143,7 +250,7 @@ The platform supports GDG AASTU’s learning programs:
 
 ---
 
-## Project Structure (Temporary)
+# Project Structure (Temporary)
 
 ```text
 gdg-aastu-history/
@@ -165,14 +272,15 @@ gdg-aastu-history/
 │   └── reports/
 │
 └── README.md
+```
 
 ## Future Enhancements
 
-- **Analytics Dashboard**
-- **Alumni Network Integration**
-- **Event Management**
-- **Certificate Generation**
-- **Public vs Internal Access Control**
+- Analytics Dashboard
+- Alumni Network Integration
+- Event Management
+- Certificate Generation
+- Public vs Internal Access Control
 
 ## Project Timeline
 
