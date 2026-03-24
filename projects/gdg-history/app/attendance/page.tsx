@@ -13,7 +13,7 @@ export default function AttendancePage() {
       : 0;
 
   return (
-    <div className="p-4 md:p-8 space-y-8">
+    <div className="space-y-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-foreground">Attendance Tracking</h1>

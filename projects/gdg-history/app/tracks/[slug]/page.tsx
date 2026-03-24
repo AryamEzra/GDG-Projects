@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import { tracks, students, leaderboard } from '@/lib/mock-data';
 import { Leaderboard } from '@/components/leaderboard/leaderboard';
@@ -7,13 +5,14 @@ import { ArrowLeft, Users, User, BookOpen } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function TrackDetailPage({ params }: PageProps) {
-  const track = tracks.find((t) => t.slug === params.slug);
+export default async function TrackDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const track = tracks.find((t) => t.slug === slug);
 
   if (!track) {
     notFound();
@@ -26,7 +25,7 @@ export default function TrackDetailPage({ params }: PageProps) {
   const trackLeaderboard = leaderboard.filter((l) => l.track === track.name).slice(0, 5);
 
   return (
-    <div className="p-4 md:p-8 space-y-8">
+    <div className="space-y-8">
       {/* Back Button */}
       <Link href="/tracks" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
         <ArrowLeft className="w-4 h-4" />
