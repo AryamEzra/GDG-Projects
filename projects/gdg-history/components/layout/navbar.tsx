@@ -1,8 +1,17 @@
 'use client';
 
-import { Bell, Search, User, Menu } from 'lucide-react';
+import { Bell, Search, User, Menu, Sun, Moon } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 export function Navbar() {
+  const { resolvedTheme, setTheme } = useTheme();
+
+  const isDark = resolvedTheme === 'dark';
+
+  const handleThemeToggle = () => {
+    setTheme(isDark ? 'light' : 'dark');
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 md:left-64 h-16 border-b border-border bg-card z-40">
       <div className="h-full px-4 md:px-8 flex items-center justify-between">
@@ -25,6 +34,16 @@ export function Navbar() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-4 ml-6">
+          {/* Theme Toggle */}
+          <button
+            onClick={handleThemeToggle}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="relative p-2 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
+          >
+            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+
           {/* Notifications */}
           <button className="relative p-2 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors">
             <Bell className="w-5 h-5" />

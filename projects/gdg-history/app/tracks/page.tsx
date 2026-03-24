@@ -5,7 +5,7 @@ import { tracks } from '@/lib/mock-data';
 
 export default function TracksPage() {
   return (
-    <div className="space-y-8">
+    <div className="p-4 md:p-8 space-y-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-foreground">Learning Tracks</h1>

@@ -15,7 +15,7 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="p-4 md:p-8 space-y-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-foreground">Admin Panel</h1>
@@ -24,7 +24,7 @@ export default function AdminPage() {
 
       {/* Admin Notice */}
       <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 flex items-start gap-4">
-        <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+        <AlertCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
         <div>
           <h3 className="font-semibold text-foreground mb-1">Admin Privileges</h3>
           <p className="text-sm text-muted-foreground">
