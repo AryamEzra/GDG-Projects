@@ -181,6 +181,56 @@ export const tracks = [
   },
 ];
 
+export interface TrackLessonPlanItem {
+  id: string;
+  title: string;
+  deadline: string;
+  summary: string;
+}
+
+export const trackLessonPlans: Record<string, TrackLessonPlanItem[]> = {
+  'web-dev': [
+    { id: 'html-css-foundations', title: 'HTML/CSS Foundations', deadline: '2026-04-05', summary: 'Build a responsive landing page with semantic HTML and modern CSS.' },
+    { id: 'react-components', title: 'React Component System', deadline: '2026-04-12', summary: 'Create reusable components and compose a small feature page.' },
+    { id: 'api-integration', title: 'API Integration', deadline: '2026-04-19', summary: 'Fetch and display external API data with loading and error states.' },
+  ],
+  'mobile-dev': [
+    { id: 'flutter-ui', title: 'Flutter UI Basics', deadline: '2026-04-06', summary: 'Implement core widgets and navigation structure.' },
+    { id: 'state-management', title: 'State Management', deadline: '2026-04-13', summary: 'Manage app state with provider or riverpod.' },
+    { id: 'device-features', title: 'Device Features', deadline: '2026-04-20', summary: 'Add camera/location and basic permissions handling.' },
+  ],
+  'data-science': [
+    { id: 'data-cleaning', title: 'Data Cleaning Pipeline', deadline: '2026-04-07', summary: 'Prepare a messy dataset and document transformation steps.' },
+    { id: 'eda-visualization', title: 'EDA and Visualization', deadline: '2026-04-14', summary: 'Create exploratory analysis and clear visual summaries.' },
+    { id: 'model-baseline', title: 'Baseline Model', deadline: '2026-04-21', summary: 'Train and evaluate a baseline prediction model.' },
+  ],
+  'cloud-computing': [
+    { id: 'cloud-fundamentals', title: 'Cloud Fundamentals', deadline: '2026-04-08', summary: 'Document deployment architecture and core services.' },
+    { id: 'container-deploy', title: 'Containerized Deploy', deadline: '2026-04-15', summary: 'Deploy an app using containers and managed runtime.' },
+    { id: 'monitoring-alerts', title: 'Monitoring and Alerts', deadline: '2026-04-22', summary: 'Set up logs, metrics, and alert thresholds.' },
+  ],
+  'ai-ml': [
+    { id: 'ml-basics', title: 'ML Basics', deadline: '2026-04-09', summary: 'Train a simple model and explain evaluation metrics.' },
+    { id: 'feature-engineering', title: 'Feature Engineering', deadline: '2026-04-16', summary: 'Improve model performance with engineered features.' },
+    { id: 'model-comparison', title: 'Model Comparison', deadline: '2026-04-23', summary: 'Compare two models and justify your final choice.' },
+  ],
+  devops: [
+    { id: 'ci-pipeline', title: 'CI Pipeline', deadline: '2026-04-10', summary: 'Create automated lint/test workflow in GitHub Actions.' },
+    { id: 'infra-as-code', title: 'Infrastructure as Code', deadline: '2026-04-17', summary: 'Provision resources with reusable IaC templates.' },
+    { id: 'release-strategy', title: 'Release Strategy', deadline: '2026-04-24', summary: 'Implement staging and production release flow.' },
+  ],
+  blockchain: [
+    { id: 'smart-contract-basics', title: 'Smart Contract Basics', deadline: '2026-04-11', summary: 'Write and test a basic smart contract.' },
+    { id: 'dapp-integration', title: 'dApp Integration', deadline: '2026-04-18', summary: 'Connect frontend wallet flow to contract operations.' },
+    { id: 'security-review', title: 'Contract Security Review', deadline: '2026-04-25', summary: 'Identify and fix common smart contract risks.' },
+  ],
+  'ui-ux': [
+    { id: 'research-wireframes', title: 'Research and Wireframes', deadline: '2026-04-10', summary: 'Create user flows and low-fidelity wireframes.' },
+    { id: 'design-system', title: 'Design System Draft', deadline: '2026-04-17', summary: 'Define typography, colors, and components for consistency.' },
+    { id: 'prototype-validation', title: 'Prototype and Validation', deadline: '2026-04-24', summary: 'Build a clickable prototype and gather usability feedback.' },
+  ],
+};
+
 export const attendanceRecords: AttendanceRecord[] = [
   {
     id: "1",
@@ -375,4 +425,278 @@ export const coreTeams = [
     members: 6,
     level: 'Core',
   },
+];
+
+export interface ArchiveProject {
+  id: string;
+  title: string;
+  year: number;
+  duration: string;
+  track: string;
+  description: string;
+  objectives: string;
+  techStack: string[];
+  teamMembers: string;
+  githubRepo: string;
+  status: 'completed' | 'archived';
+}
+
+const ARCHIVE_YEARS = [2022, 2023, 2024] as const;
+
+const ARCHIVE_TRACKS = [
+  'Web Development',
+  'Mobile Development',
+  'Data Science',
+  'Cloud Computing',
+  'AI & Machine Learning',
+  'DevOps & Infrastructure',
+  'Blockchain Development',
+  'UI/UX Design',
+  'DSA Progress',
+] as const;
+
+const ARCHIVE_CORE_TEAMS = [
+  'Communication',
+  'Event',
+  'Content',
+  'Technical',
+  'Project Management',
+] as const;
+
+const FIRST_NAMES = [
+  'Abebe',
+  'Almaz',
+  'Berhanu',
+  'Chaltu',
+  'Dawit',
+  'Emebet',
+  'Fikirte',
+  'Hanna',
+  'Isayas',
+  'Kaleb',
+  'Lulit',
+  'Meron',
+  'Natnael',
+  'Rahel',
+  'Samrawit',
+  'Tewodros',
+  'Yared',
+  'Zelalem',
+  'Betelhem',
+  'Henok',
+  'Marta',
+  'Yonas',
+  'Saron',
+  'Mikias',
+];
+
+const LAST_NAMES = [
+  'Kebede',
+  'Gebreselassie',
+  'Tadesse',
+  'Yohannes',
+  'Assefa',
+  'Mulatu',
+  'Tesfaye',
+  'Alemu',
+  'Bekele',
+  'Haile',
+  'Nigatu',
+  'Berhe',
+  'Mekonnen',
+  'Arega',
+  'Sisay',
+  'Worku',
+  'Girma',
+  'Solomon',
+  'Tigist',
+  'Demissie',
+  'Taffa',
+  'Mamo',
+  'Wondimu',
+  'Beyene',
+];
+
+function slugify(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+function buildName(seed: number) {
+  const first = FIRST_NAMES[seed % FIRST_NAMES.length];
+  const last = LAST_NAMES[Math.floor(seed / FIRST_NAMES.length) % LAST_NAMES.length];
+  return `${first} ${last}`;
+}
+
+function buildEmail(name: string, seed: number) {
+  const user = name.toLowerCase().replace(/\s+/g, '.');
+  return `${user}${seed}@gdgaastu.archive`;
+}
+
+function buildPhone(seed: number) {
+  const suffix = String(10000000 + seed).slice(-8);
+  return `+251-9${suffix}`;
+}
+
+function trackTechStack(track: string): string[] {
+  const map: Record<string, string[]> = {
+    'Web Development': ['Next.js', 'TypeScript', 'PostgreSQL'],
+    'Mobile Development': ['Flutter', 'Dart', 'Firebase'],
+    'Data Science': ['Python', 'Pandas', 'scikit-learn'],
+    'Cloud Computing': ['AWS', 'Docker', 'Terraform'],
+    'AI & Machine Learning': ['Python', 'PyTorch', 'NumPy'],
+    'DevOps & Infrastructure': ['GitHub Actions', 'Docker', 'Kubernetes'],
+    'Blockchain Development': ['Solidity', 'Hardhat', 'Ethers.js'],
+    'UI/UX Design': ['Figma', 'Design Tokens', 'Prototyping'],
+    'DSA Progress': ['LeetCode', 'Python', 'C++'],
+  };
+  return map[track] ?? ['TypeScript', 'Node.js'];
+}
+
+export const archiveProjects: ArchiveProject[] = ARCHIVE_YEARS.flatMap((year) =>
+  ARCHIVE_TRACKS.map((track, index) => ({
+    id: `p-${year}-${slugify(track)}`,
+    title: `${track} Capstone ${year}`,
+    year,
+    duration: 'Feb - Jun',
+    track,
+    description: `${track} cohort final delivery for the academic cycle.`,
+    objectives: 'Deliver practical outcomes and document mentor-reviewed milestones.',
+    techStack: trackTechStack(track),
+    teamMembers: '20 students + 1 mentor',
+    githubRepo: `https://github.com/gdg-aastu/${slugify(track)}-${year}`,
+    status: (index + year) % 4 === 0 ? 'archived' : 'completed',
+  }))
+);
+
+export interface ArchiveStudent {
+  id: string;
+  year: number;
+  track: string;
+  name: string;
+  email: string;
+  phone: string;
+  mentor: string;
+  status: 'active' | 'graduated';
+}
+
+export const archiveStudents: ArchiveStudent[] = ARCHIVE_YEARS.flatMap((year, yearIdx) =>
+  ARCHIVE_TRACKS.flatMap((track, trackIdx) =>
+    Array.from({ length: 20 }, (_, i) => {
+      const seed = yearIdx * 1000 + trackIdx * 50 + i;
+      const name = buildName(seed);
+      return {
+        id: `s-${year}-${trackIdx + 1}-${i + 1}`,
+        year,
+        track,
+        name,
+        email: buildEmail(name, seed),
+        phone: buildPhone(seed),
+        mentor: `Mentor ${trackIdx + 1}`,
+        status: i % 5 === 0 ? 'graduated' : 'active',
+      };
+    })
+  )
+);
+
+export interface ArchiveMemberRole {
+  id: string;
+  name: string;
+  role: string;
+  year: number;
+  yearsActive: string;
+  teamOrDomain: string;
+  contributions: string;
+  projects: string;
+}
+
+export const archiveMemberRoles: ArchiveMemberRole[] = ARCHIVE_YEARS.flatMap((year, yearIdx) =>
+  ARCHIVE_TRACKS.map((track, trackIdx) => {
+    const seed = yearIdx * 100 + trackIdx;
+    const name = buildName(seed + 300);
+    return {
+      id: `m-${year}-${trackIdx + 1}`,
+      name,
+      role: trackIdx % 2 === 0 ? 'Track Lead' : 'Mentor',
+      year,
+      yearsActive: `${year - 1}-${year}`,
+      teamOrDomain: track,
+      contributions: 'Mentored submissions, coordinated lessons, and supported evaluations.',
+      projects: `${track} Capstone ${year}`,
+    };
+  })
+);
+
+export interface ArchiveDocument {
+  id: string;
+  year: number;
+  track: string;
+  type: 'meeting-note' | 'event-report' | 'guideline' | 'curriculum';
+  title: string;
+  summary: string;
+}
+
+const DOCUMENT_TYPES: ArchiveDocument['type'][] = ['meeting-note', 'event-report', 'guideline', 'curriculum'];
+
+export const archiveDocuments: ArchiveDocument[] = ARCHIVE_YEARS.flatMap((year) =>
+  ARCHIVE_TRACKS.map((track, idx) => ({
+    id: `d-${year}-${slugify(track)}`,
+    year,
+    track,
+    type: DOCUMENT_TYPES[idx % DOCUMENT_TYPES.length],
+    title: `${track} ${year} ${DOCUMENT_TYPES[idx % DOCUMENT_TYPES.length].replace('-', ' ')}`,
+    summary: 'Archived notes, outcomes, and guidance document for the selected track and year.',
+  }))
+);
+
+export interface CoreTeamMemberArchive {
+  id: string;
+  year: number;
+  team: string;
+  name: string;
+  role: string;
+  email: string;
+  phone: string;
+}
+
+export const coreTeamMembersArchive: CoreTeamMemberArchive[] = ARCHIVE_YEARS.flatMap((year, yearIdx) =>
+  ARCHIVE_CORE_TEAMS.flatMap((team, teamIdx) =>
+    Array.from({ length: 10 }, (_, i) => {
+      const seed = 5000 + yearIdx * 1000 + teamIdx * 100 + i;
+      const name = buildName(seed);
+      const role = i === 0 ? 'Lead' : i === 1 ? 'Co-Lead' : i < 4 ? 'Coordinator' : 'Member';
+      return {
+        id: `ctm-${year}-${teamIdx + 1}-${i + 1}`,
+        year,
+        team,
+        name,
+        role,
+        email: buildEmail(name, seed),
+        phone: buildPhone(seed),
+      };
+    })
+  )
+);
+
+export interface CoreTeamArchive {
+  id: string;
+  year: number;
+  team: string;
+  initiative: string;
+  lead: string;
+  contributors: string;
+  status: 'completed' | 'archived';
+}
+
+export const coreTeamArchive: CoreTeamArchive[] = [
+  ...ARCHIVE_YEARS.flatMap((year, yearIdx) =>
+    ARCHIVE_CORE_TEAMS.map((team, teamIdx) => ({
+      id: `cta-${year}-${teamIdx + 1}`,
+      year,
+      team,
+      initiative: `${team} Strategic Initiative ${year}`,
+      lead: buildName(7000 + yearIdx * 100 + teamIdx),
+      contributors: '10 members',
+      status: ((year + teamIdx) % 5 === 0 ? 'archived' : 'completed') as CoreTeamArchive['status'],
+    }))
+  ),
 ];

@@ -1,9 +1,13 @@
 'use client';
 
 import { TrackGrid } from '@/components/tracks/track-grid';
-import { tracks } from '@/lib/mock-data';
+import { archiveStudents, tracks } from '@/lib/mock-data';
 
 export default function TracksPage() {
+  const years = Array.from(new Set(archiveStudents.map((student) => student.year)));
+  const latestYear = years.length > 0 ? Math.max(...years) : new Date().getFullYear();
+  const totalStudentsInLatestYear = archiveStudents.filter((student) => student.year === latestYear).length;
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -15,7 +19,8 @@ export default function TracksPage() {
       {/* Filters/Info */}
       <div className="flex items-center justify-between">
         <div className="text-sm text-muted-foreground">
-          Showing <span className="font-semibold text-foreground">{tracks.length}</span> available tracks
+          Showing <span className="font-semibold text-foreground">{tracks.length}</span> tracks with{' '}
+          <span className="font-semibold text-foreground">{totalStudentsInLatestYear}</span> students in {latestYear}
         </div>
       </div>
 

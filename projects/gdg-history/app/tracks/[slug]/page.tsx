@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { tracks, students, leaderboard } from '@/lib/mock-data';
+import { cookies } from 'next/headers';
+import { archiveStudents, tracks, leaderboard, trackLessonPlans } from '@/lib/mock-data';
 import { Leaderboard } from '@/components/leaderboard/leaderboard';
+import { StudentTrackWorkspace } from '@/components/tracks/student-track-workspace';
 import { ArrowLeft, Users, User, BookOpen } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
@@ -12,17 +14,30 @@ interface PageProps {
 
 export default async function TrackDetailPage({ params }: PageProps) {
   const { slug } = await params;
+  const cookieStore = await cookies();
+  const role = cookieStore.get('role')?.value === 'admin' ? 'admin' : 'student';
   const track = tracks.find((t) => t.slug === slug);
 
   if (!track) {
     notFound();
   }
 
-  // Filter students by track
-  const trackStudents = students.filter((s) => s.track === track.name);
+  const archiveYears = Array.from(new Set(archiveStudents.map((student) => student.year)));
+  const latestYear = archiveYears.length > 0 ? Math.max(...archiveYears) : new Date().getFullYear();
+
+  // Filter students by track for the latest archive year.
+  const trackStudents = archiveStudents.filter(
+    (student) => student.year === latestYear && student.track === track.name
+  );
+
+  const attendanceByStudentId = (studentId: string) => {
+    const seed = studentId.split('').reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+    return 80 + (seed % 19);
+  };
 
   // Get track leaderboard (simplified)
   const trackLeaderboard = leaderboard.filter((l) => l.track === track.name).slice(0, 5);
+  const lessonPlan = trackLessonPlans[slug] ?? [];
 
   return (
     <div className="space-y-8">
@@ -78,7 +93,7 @@ export default async function TrackDetailPage({ params }: PageProps) {
             <BookOpen className="w-5 h-5 text-primary" />
           </div>
           <span className="text-3xl font-bold text-foreground">
-            {Math.round((trackStudents.length / track.members) * 100)}%
+            {Math.round((trackStudents.length / 20) * 100)}%
           </span>
           <p className="text-xs text-muted-foreground mt-2">Completion rate</p>
         </div>
@@ -90,7 +105,10 @@ export default async function TrackDetailPage({ params }: PageProps) {
           </div>
           <span className="text-3xl font-bold text-foreground">
             {trackStudents.length > 0
-              ? Math.round(trackStudents.reduce((sum, s) => sum + s.attendance, 0) / trackStudents.length)
+              ? Math.round(
+                  trackStudents.reduce((sum, student) => sum + attendanceByStudentId(student.id), 0) /
+                    trackStudents.length
+                )
               : 0}
             %
           </span>
@@ -98,49 +116,56 @@ export default async function TrackDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Track Members */}
-        <div className="lg:col-span-2 bg-card border border-border rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-foreground mb-6">Enrolled Members</h2>
-          {trackStudents.length > 0 ? (
-            <div className="space-y-4">
-              {trackStudents.map((student) => (
-                <div key={student.id} className="flex items-center justify-between p-4 bg-secondary/50 rounded-lg hover:bg-secondary transition-colors">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
-                      {student.avatar}
+      {role === 'admin' ? (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Track Members */}
+          <div className="lg:col-span-2 bg-card border border-border rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-foreground mb-6">Enrolled Members</h2>
+            {trackStudents.length > 0 ? (
+              <div className="space-y-4">
+                {trackStudents.map((student) => (
+                  <div key={student.id} className="flex items-center justify-between p-4 bg-secondary/50 rounded-lg hover:bg-secondary transition-colors">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
+                        {student.name
+                          .split(' ')
+                          .map((part) => part[0])
+                          .join('')
+                          .slice(0, 2)}
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground">{student.name}</p>
+                        <p className="text-xs text-muted-foreground">{student.email}</p>
+                        <p className="text-xs text-muted-foreground">{student.phone}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-foreground">{student.name}</p>
-                      <p className="text-xs text-muted-foreground">{student.email}</p>
+                    <div className="text-right">
+                      <p className="font-semibold text-foreground">{student.status}</p>
+                      <p className="text-xs text-muted-foreground">Mentor: {student.mentor}</p>
+                      <p className="text-xs text-muted-foreground">{attendanceByStudentId(student.id)}% attendance</p>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-foreground flex items-center gap-1">
-                      {student.coins} <span className="text-yellow-500">⚡</span>
-                    </p>
-                    <p className="text-xs text-muted-foreground">{student.attendance}% attendance</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-muted-foreground text-sm py-8 text-center">No members enrolled in this track yet</p>
-          )}
-        </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-muted-foreground text-sm py-8 text-center">No members enrolled in this track yet</p>
+            )}
+          </div>
 
-        {/* Leaderboard */}
-        <div>
-          {trackLeaderboard.length > 0 ? (
-            <Leaderboard entries={trackLeaderboard} />
-          ) : (
-            <div className="bg-card border border-border rounded-lg p-6 text-center">
-              <p className="text-muted-foreground text-sm">No leaderboard data available</p>
-            </div>
-          )}
+          {/* Leaderboard */}
+          <div>
+            {trackLeaderboard.length > 0 ? (
+              <Leaderboard entries={trackLeaderboard} />
+            ) : (
+              <div className="bg-card border border-border rounded-lg p-6 text-center">
+                <p className="text-muted-foreground text-sm">No leaderboard data available</p>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <StudentTrackWorkspace trackSlug={slug} trackName={track.name} lessons={lessonPlan} />
+      )}
     </div>
   );
 }

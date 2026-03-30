@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BarChart3, BookOpen, Calendar, Home, Users, Settings, Layers } from 'lucide-react';
+import { BarChart3, BookOpen, Calendar, Home, Users, Settings, Layers, Archive } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const studentNavLinks = [
@@ -21,6 +21,11 @@ const studentNavLinks = [
 
 const adminNavLinks = [
   {
+    href: '/tracks',
+    label: 'Tracks',
+    icon: BookOpen,
+  },
+  {
     href: '/attendance',
     label: 'Attendance',
     icon: Calendar,
@@ -34,6 +39,11 @@ const adminNavLinks = [
     href: '/core-teams',
     label: 'Core Teams',
     icon: Layers,
+  },
+  {
+    href: '/archive',
+    label: 'Archive',
+    icon: Archive,
   },
 ];
 
