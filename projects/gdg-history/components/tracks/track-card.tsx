@@ -3,6 +3,7 @@ import { ArrowRight, Users } from 'lucide-react';
 
 interface TrackCardProps {
   slug: string;
+  href?: string;
   name: string;
   description: string;
   icon: string;
@@ -10,9 +11,11 @@ interface TrackCardProps {
   level: string;
 }
 
-export function TrackCard({ slug, name, description, icon, members, level }: TrackCardProps) {
+export function TrackCard({ slug, href, name, description, icon, members, level }: TrackCardProps) {
+  const trackHref = href ?? `/tracks/${slug}`;
+
   return (
-    <Link href={`/tracks/${slug}`}>
+    <Link href={trackHref}>
       <div className="bg-card border border-border rounded-lg p-6 hover:border-primary/30 hover:shadow-lg transition-all group cursor-pointer h-full">
         <div className="flex items-start justify-between mb-4">
           <span className="text-3xl">{icon}</span>

@@ -1,11 +1,12 @@
 'use client';
 
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BarChart3, BookOpen, Calendar, Code2, Home, Users, Settings } from 'lucide-react';
+import { BarChart3, BookOpen, Calendar, Home, Users, Settings, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const navLinks = [
+const studentNavLinks = [
   {
     href: '/dashboard',
     label: 'Dashboard',
@@ -16,25 +17,44 @@ const navLinks = [
     label: 'Tracks',
     icon: BookOpen,
   },
+];
+
+const adminNavLinks = [
   {
     href: '/attendance',
     label: 'Attendance',
     icon: Calendar,
   },
   {
-    href: '/dsa',
-    label: 'DSA Progress',
-    icon: Code2,
-  },
-  {
     href: '/admin',
     label: 'Admin Panel',
     icon: Users,
+  },
+  {
+    href: '/core-teams',
+    label: 'Core Teams',
+    icon: Layers,
   },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [role, setRole] = useState<'student' | 'admin'>('student');
+
+  useEffect(() => {
+    const roleCookie = document.cookie
+      .split('; ')
+      .find((entry) => entry.startsWith('role='))
+      ?.split('=')[1];
+
+    if (roleCookie === 'admin' || roleCookie === 'student') {
+      setRole(roleCookie);
+    }
+  }, []);
+
+  const navLinks = useMemo(() => {
+    return role === 'admin' ? adminNavLinks : studentNavLinks;
+  }, [role]);
 
   return (
     <aside className="hidden md:fixed md:left-0 md:top-0 md:h-screen md:w-64 md:border-r md:border-border md:bg-card md:flex md:flex-col">
@@ -47,7 +67,7 @@ export function Sidebar() {
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-foreground">GDG AASTU</span>
-              <span className="text-xs text-muted-foreground">Tech Club</span>
+              <span className="text-xs text-muted-foreground capitalize">{role} Portal</span>
             </div>
           </Link>
         </div>
@@ -65,7 +85,7 @@ export function Sidebar() {
                   'flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors',
                   isActive
                     ? 'bg-primary text-primary-foreground'
-                    : 'text-foreground hover:bg-secondary text-muted-foreground hover:text-foreground'
+                    : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
                 )}
               >
                 <Icon className="w-5 h-5" />

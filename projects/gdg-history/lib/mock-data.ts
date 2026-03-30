@@ -167,6 +167,18 @@ export const tracks = [
     level: "Beginner",
     color: "from-pink-500 to-rose-500",
   },
+  {
+    id: "dsa-progress",
+    slug: "dsa-progress",
+    href: "/dsa",
+    name: "DSA Progress",
+    description: "Practice and track Data Structures and Algorithms performance",
+    mentor: "Eng. Meron Alemu",
+    icon: "🧠",
+    members: 19,
+    level: "Intermediate",
+    color: "from-teal-500 to-cyan-500",
+  },
 ];
 
 export const attendanceRecords: AttendanceRecord[] = [
@@ -321,3 +333,46 @@ export const dashboardStats = {
   averageAttendance: 88.8,
   totalCoinsDistributed: students.reduce((sum, s) => sum + s.coins, 0),
 };
+
+export const coreTeams = [
+  {
+    id: 'communication',
+    name: 'Communication',
+    description: 'Handles announcements, partner outreach, and internal updates.',
+    icon: '📣',
+    members: 8,
+    level: 'Core',
+  },
+  {
+    id: 'event',
+    name: 'Event',
+    description: 'Plans workshops, meetups, hackathons, and execution logistics.',
+    icon: '🎉',
+    members: 10,
+    level: 'Core',
+  },
+  {
+    id: 'content',
+    name: 'Content',
+    description: 'Creates slides, posts, visual assets, and educational materials.',
+    icon: '📝',
+    members: 7,
+    level: 'Core',
+  },
+  {
+    id: 'technical',
+    name: 'Technical',
+    description: 'Maintains platforms, tools, automations, and technical systems.',
+    icon: '🛠️',
+    members: 9,
+    level: 'Core',
+  },
+  {
+    id: 'project-management',
+    name: 'Project Management',
+    description: 'Coordinates planning, milestones, reporting, and cross-team delivery.',
+    icon: '📂',
+    members: 6,
+    level: 'Core',
+  },
+];

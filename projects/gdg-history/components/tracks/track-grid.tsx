@@ -3,6 +3,7 @@ import { TrackCard } from './track-card';
 interface Track {
   id: string;
   slug: string;
+  href?: string;
   name: string;
   description: string;
   icon: string;
@@ -21,6 +22,7 @@ export function TrackGrid({ tracks }: TrackGridProps) {
         <TrackCard
           key={track.id}
           slug={track.slug}
+          href={track.href}
           name={track.name}
           description={track.description}
           icon={track.icon}
