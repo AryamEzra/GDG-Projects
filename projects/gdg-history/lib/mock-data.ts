@@ -86,7 +86,7 @@ export const tracks = [
     description: "Master modern web technologies and build responsive applications",
     mentor: "Dr. Solomon Yohannes",
     icon: "🌐",
-    members: 24,
+    members: 22,
     level: "Intermediate",
     color: "from-blue-500 to-cyan-500",
   },
@@ -97,7 +97,7 @@ export const tracks = [
     description: "Create powerful mobile apps with Flutter and React Native",
     mentor: "Eng. Hiwot Assefa",
     icon: "📱",
-    members: 18,
+    members: 19,
     level: "Intermediate",
     color: "from-purple-500 to-pink-500",
   },
@@ -108,7 +108,7 @@ export const tracks = [
     description: "Analyze data and build predictive models using Python",
     mentor: "Prof. Adnan Mohamed",
     icon: "📊",
-    members: 16,
+    members: 21,
     level: "Advanced",
     color: "from-orange-500 to-red-500",
   },
@@ -119,7 +119,7 @@ export const tracks = [
     description: "Deploy and scale applications on cloud platforms",
     mentor: "Eng. Tigist Menelik",
     icon: "☁️",
-    members: 14,
+    members: 18,
     level: "Intermediate",
     color: "from-green-500 to-emerald-500",
   },
@@ -130,7 +130,7 @@ export const tracks = [
     description: "Build intelligent systems with TensorFlow and PyTorch",
     mentor: "Dr. Abebe Kebede",
     icon: "🤖",
-    members: 20,
+    members: 24,
     level: "Advanced",
     color: "from-indigo-500 to-purple-500",
   },
@@ -141,7 +141,7 @@ export const tracks = [
     description: "Master CI/CD, containerization, and infrastructure automation",
     mentor: "Eng. Yohannes Taffa",
     icon: "⚙️",
-    members: 12,
+    members: 17,
     level: "Advanced",
     color: "from-red-500 to-pink-500",
   },
@@ -152,7 +152,7 @@ export const tracks = [
     description: "Build decentralized applications and smart contracts",
     mentor: "Eng. Kebede Girma",
     icon: "⛓️",
-    members: 11,
+    members: 16,
     level: "Advanced",
     color: "from-yellow-500 to-orange-500",
   },
@@ -163,7 +163,7 @@ export const tracks = [
     description: "Create beautiful and intuitive user experiences",
     mentor: "Designer Almaz Berhe",
     icon: "🎨",
-    members: 15,
+    members: 20,
     level: "Beginner",
     color: "from-pink-500 to-rose-500",
   },
@@ -175,7 +175,7 @@ export const tracks = [
     description: "Practice and track Data Structures and Algorithms performance",
     mentor: "Eng. Meron Alemu",
     icon: "🧠",
-    members: 19,
+    members: 23,
     level: "Intermediate",
     color: "from-teal-500 to-cyan-500",
   },
@@ -377,20 +377,13 @@ export const recentActivity = [
   },
 ];
 
-export const dashboardStats = {
-  totalMembers: students.length,
-  activeSessionToday: 23,
-  averageAttendance: 88.8,
-  totalCoinsDistributed: students.reduce((sum, s) => sum + s.coins, 0),
-};
-
 export const coreTeams = [
   {
     id: 'communication',
     name: 'Communication',
     description: 'Handles announcements, partner outreach, and internal updates.',
     icon: '📣',
-    members: 8,
+    members: 18,
     level: 'Core',
   },
   {
@@ -398,7 +391,7 @@ export const coreTeams = [
     name: 'Event',
     description: 'Plans workshops, meetups, hackathons, and execution logistics.',
     icon: '🎉',
-    members: 10,
+    members: 20,
     level: 'Core',
   },
   {
@@ -406,7 +399,7 @@ export const coreTeams = [
     name: 'Content',
     description: 'Creates slides, posts, visual assets, and educational materials.',
     icon: '📝',
-    members: 7,
+    members: 17,
     level: 'Core',
   },
   {
@@ -414,7 +407,7 @@ export const coreTeams = [
     name: 'Technical',
     description: 'Maintains platforms, tools, automations, and technical systems.',
     icon: '🛠️',
-    members: 9,
+    members: 22,
     level: 'Core',
   },
   {
@@ -422,8 +415,85 @@ export const coreTeams = [
     name: 'Project Management',
     description: 'Coordinates planning, milestones, reporting, and cross-team delivery.',
     icon: '📂',
-    members: 6,
+    members: 16,
     level: 'Core',
+  },
+];
+
+export interface CoreTeamTaskItem {
+  id: string;
+  teamId: string;
+  title: string;
+  assignee: string;
+  dueDate: string;
+  status: 'todo' | 'in-progress' | 'done';
+}
+
+export const coreTeamTasks: CoreTeamTaskItem[] = [
+  { id: 'task-comm-1', teamId: 'communication', title: 'Prepare weekly community update post', assignee: 'Lead', dueDate: '2026-04-03', status: 'in-progress' },
+  { id: 'task-comm-2', teamId: 'communication', title: 'Publish mentor spotlight carousel', assignee: 'Coordinator', dueDate: '2026-04-05', status: 'todo' },
+  { id: 'task-comm-3', teamId: 'communication', title: 'Finalize outreach partner email template', assignee: 'Member', dueDate: '2026-04-07', status: 'done' },
+
+  { id: 'task-event-1', teamId: 'event', title: 'Book venue for Saturday workshop', assignee: 'Lead', dueDate: '2026-04-02', status: 'done' },
+  { id: 'task-event-2', teamId: 'event', title: 'Finalize volunteer shift schedule', assignee: 'Coordinator', dueDate: '2026-04-04', status: 'in-progress' },
+  { id: 'task-event-3', teamId: 'event', title: 'Prepare event checklist and runbook', assignee: 'Member', dueDate: '2026-04-06', status: 'todo' },
+
+  { id: 'task-content-1', teamId: 'content', title: 'Draft next week slide deck', assignee: 'Lead', dueDate: '2026-04-03', status: 'in-progress' },
+  { id: 'task-content-2', teamId: 'content', title: 'Review design assets for social media', assignee: 'Coordinator', dueDate: '2026-04-05', status: 'todo' },
+  { id: 'task-content-3', teamId: 'content', title: 'Upload final curriculum notes', assignee: 'Member', dueDate: '2026-04-07', status: 'done' },
+
+  { id: 'task-technical-1', teamId: 'technical', title: 'Patch archive filtering performance issue', assignee: 'Lead', dueDate: '2026-04-02', status: 'in-progress' },
+  { id: 'task-technical-2', teamId: 'technical', title: 'Improve CI checks for lint + type safety', assignee: 'Coordinator', dueDate: '2026-04-04', status: 'todo' },
+  { id: 'task-technical-3', teamId: 'technical', title: 'Audit route access controls', assignee: 'Member', dueDate: '2026-04-06', status: 'done' },
+
+  { id: 'task-pm-1', teamId: 'project-management', title: 'Update cross-team timeline board', assignee: 'Lead', dueDate: '2026-04-03', status: 'in-progress' },
+  { id: 'task-pm-2', teamId: 'project-management', title: 'Collect blockers from all team leads', assignee: 'Co-Lead', dueDate: '2026-04-05', status: 'todo' },
+  { id: 'task-pm-3', teamId: 'project-management', title: 'Publish sprint retrospective summary', assignee: 'Coordinator', dueDate: '2026-04-07', status: 'done' },
+];
+
+export interface CoreTeamMeetingNote {
+  id: string;
+  teamId: string;
+  week: string;
+  summary: string;
+  actionItems: string[];
+}
+
+export const coreTeamMeetingNotes: CoreTeamMeetingNote[] = [
+  {
+    id: 'note-comm-1',
+    teamId: 'communication',
+    week: 'Week of Mar 24, 2026',
+    summary: 'Aligned messaging calendar with upcoming track milestones.',
+    actionItems: ['Finalize copy by Wednesday', 'Schedule mentor announcements', 'Sync with content team on visuals'],
+  },
+  {
+    id: 'note-event-1',
+    teamId: 'event',
+    week: 'Week of Mar 24, 2026',
+    summary: 'Confirmed workshop logistics and volunteer roles.',
+    actionItems: ['Lock venue layout', 'Share volunteer checklist', 'Send participant reminders'],
+  },
+  {
+    id: 'note-content-1',
+    teamId: 'content',
+    week: 'Week of Mar 24, 2026',
+    summary: 'Reviewed slide quality standards and update cadence.',
+    actionItems: ['Audit all decks', 'Fix missing references', 'Prepare template v2'],
+  },
+  {
+    id: 'note-technical-1',
+    teamId: 'technical',
+    week: 'Week of Mar 24, 2026',
+    summary: 'Resolved backlog issues and prioritized next sprint.',
+    actionItems: ['Complete auth checks', 'Improve archive query speed', 'Publish test coverage report'],
+  },
+  {
+    id: 'note-pm-1',
+    teamId: 'project-management',
+    week: 'Week of Mar 24, 2026',
+    summary: 'Reviewed dependency risks across teams and milestones.',
+    actionItems: ['Re-baseline milestone dates', 'Escalate resource blockers', 'Share weekly risk dashboard'],
   },
 ];
 
@@ -462,6 +532,26 @@ const ARCHIVE_CORE_TEAMS = [
   'Technical',
   'Project Management',
 ] as const;
+
+const TRACK_STUDENT_COUNTS: Record<(typeof ARCHIVE_TRACKS)[number], number> = {
+  'Web Development': 22,
+  'Mobile Development': 19,
+  'Data Science': 21,
+  'Cloud Computing': 18,
+  'AI & Machine Learning': 24,
+  'DevOps & Infrastructure': 17,
+  'Blockchain Development': 16,
+  'UI/UX Design': 20,
+  'DSA Progress': 23,
+};
+
+const CORE_TEAM_MEMBER_COUNTS: Record<(typeof ARCHIVE_CORE_TEAMS)[number], number> = {
+  Communication: 18,
+  Event: 20,
+  Content: 17,
+  Technical: 22,
+  'Project Management': 16,
+};
 
 const FIRST_NAMES = [
   'Abebe',
@@ -562,7 +652,7 @@ export const archiveProjects: ArchiveProject[] = ARCHIVE_YEARS.flatMap((year) =>
     description: `${track} cohort final delivery for the academic cycle.`,
     objectives: 'Deliver practical outcomes and document mentor-reviewed milestones.',
     techStack: trackTechStack(track),
-    teamMembers: '20 students + 1 mentor',
+    teamMembers: `${TRACK_STUDENT_COUNTS[track]} students + 1 mentor`,
     githubRepo: `https://github.com/gdg-aastu/${slugify(track)}-${year}`,
     status: (index + year) % 4 === 0 ? 'archived' : 'completed',
   }))
@@ -581,7 +671,7 @@ export interface ArchiveStudent {
 
 export const archiveStudents: ArchiveStudent[] = ARCHIVE_YEARS.flatMap((year, yearIdx) =>
   ARCHIVE_TRACKS.flatMap((track, trackIdx) =>
-    Array.from({ length: 20 }, (_, i) => {
+    Array.from({ length: TRACK_STUDENT_COUNTS[track] }, (_, i) => {
       const seed = yearIdx * 1000 + trackIdx * 50 + i;
       const name = buildName(seed);
       return {
@@ -597,6 +687,17 @@ export const archiveStudents: ArchiveStudent[] = ARCHIVE_YEARS.flatMap((year, ye
     })
   )
 );
+
+const latestArchiveYear = Math.max(...ARCHIVE_YEARS);
+const latestYearStudents = archiveStudents.filter((student) => student.year === latestArchiveYear);
+const latestYearActiveMembers = latestYearStudents.filter((student) => student.status === 'active');
+
+export const dashboardStats = {
+  totalMembers: latestYearActiveMembers.length,
+  activeSessionToday: Math.round(latestYearActiveMembers.length * 0.16),
+  averageAttendance: 88.8,
+  totalCoinsDistributed: latestYearActiveMembers.length * 42,
+};
 
 export interface ArchiveMemberRole {
   id: string;
@@ -660,7 +761,7 @@ export interface CoreTeamMemberArchive {
 
 export const coreTeamMembersArchive: CoreTeamMemberArchive[] = ARCHIVE_YEARS.flatMap((year, yearIdx) =>
   ARCHIVE_CORE_TEAMS.flatMap((team, teamIdx) =>
-    Array.from({ length: 10 }, (_, i) => {
+    Array.from({ length: CORE_TEAM_MEMBER_COUNTS[team] }, (_, i) => {
       const seed = 5000 + yearIdx * 1000 + teamIdx * 100 + i;
       const name = buildName(seed);
       const role = i === 0 ? 'Lead' : i === 1 ? 'Co-Lead' : i < 4 ? 'Coordinator' : 'Member';
@@ -695,7 +796,7 @@ export const coreTeamArchive: CoreTeamArchive[] = [
       team,
       initiative: `${team} Strategic Initiative ${year}`,
       lead: buildName(7000 + yearIdx * 100 + teamIdx),
-      contributors: '10 members',
+      contributors: `${CORE_TEAM_MEMBER_COUNTS[team]} members`,
       status: ((year + teamIdx) % 5 === 0 ? 'archived' : 'completed') as CoreTeamArchive['status'],
     }))
   ),

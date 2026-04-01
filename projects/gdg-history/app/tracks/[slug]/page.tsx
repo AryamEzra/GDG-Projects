@@ -93,7 +93,7 @@ export default async function TrackDetailPage({ params }: PageProps) {
             <BookOpen className="w-5 h-5 text-primary" />
           </div>
           <span className="text-3xl font-bold text-foreground">
-            {Math.round((trackStudents.length / 20) * 100)}%
+            {Math.round((trackStudents.length / Math.max(track.members, 1)) * 100)}%
           </span>
           <p className="text-xs text-muted-foreground mt-2">Completion rate</p>
         </div>

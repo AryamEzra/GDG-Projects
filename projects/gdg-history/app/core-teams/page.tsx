@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { coreTeamArchive, coreTeams } from '@/lib/mock-data';
 
@@ -34,9 +35,10 @@ export default function CoreTeamsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {coreTeams.map((team) => (
-          <div
+          <Link
             key={team.id}
-            className="bg-card border border-border rounded-lg p-6 hover:border-primary/30 hover:shadow-lg transition-all"
+            href={`/core-teams/${team.id}`}
+            className="bg-card border border-border rounded-lg p-6 hover:border-primary/30 hover:shadow-lg transition-all block"
           >
             <div className="flex items-start justify-between mb-4">
               <span className="text-3xl">{team.icon}</span>
@@ -52,8 +54,9 @@ export default function CoreTeamsPage() {
               <p className="text-sm text-muted-foreground">
                 <span className="font-semibold text-foreground">{team.members}</span> members
               </p>
+              <p className="text-xs text-primary mt-2">Open team workspace</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
