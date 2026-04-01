@@ -1,29 +1,19 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, CheckCircle2, Circle, Clock3, Users } from 'lucide-react';
+import { ArrowLeft, Users } from 'lucide-react';
 import {
   coreTeamMeetingNotes,
   coreTeamMembersArchive,
   coreTeams,
   coreTeamTasks,
 } from '@/lib/mock-data';
+import { TaskBoard } from '@/components/core-teams/task-board';
+import { MeetingNotesBoard } from '@/components/core-teams/meeting-notes-board';
 
 interface TeamPageProps {
   params: Promise<{
     teamId: string;
   }>;
-}
-
-function badgeForStatus(status: 'todo' | 'in-progress' | 'done') {
-  if (status === 'done') return 'bg-green-500/15 text-green-700';
-  if (status === 'in-progress') return 'bg-amber-500/15 text-amber-700';
-  return 'bg-secondary text-foreground';
-}
-
-function iconForStatus(status: 'todo' | 'in-progress' | 'done') {
-  if (status === 'done') return <CheckCircle2 className="w-4 h-4" />;
-  if (status === 'in-progress') return <Clock3 className="w-4 h-4" />;
-  return <Circle className="w-4 h-4" />;
 }
 
 export default async function CoreTeamDetailPage({ params }: TeamPageProps) {
@@ -64,6 +54,11 @@ export default async function CoreTeamDetailPage({ params }: TeamPageProps) {
         </div>
       </div>
 
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <TaskBoard teamId={team.id} tasks={tasks} />
+        <MeetingNotesBoard teamId={team.id} initialNotes={meetingNotes} />
+      </div>
+
       <section className="space-y-4">
         <div className="flex items-center gap-2">
           <Users className="w-5 h-5 text-primary" />
@@ -93,44 +88,6 @@ export default async function CoreTeamDetailPage({ params }: TeamPageProps) {
           </table>
         </div>
       </section>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <section className="bg-card border border-border rounded-lg p-6 space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Task List / To-Dos</h2>
-          <div className="space-y-3">
-            {tasks.map((task) => (
-              <div key={task.id} className="border border-border rounded-md p-4 bg-secondary/30">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="font-medium text-foreground">{task.title}</p>
-                  <span className={`text-xs px-2 py-1 rounded-full capitalize inline-flex items-center gap-1 ${badgeForStatus(task.status)}`}>
-                    {iconForStatus(task.status)}
-                    {task.status.replace('-', ' ')}
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground mt-2">Assignee: {task.assignee}</p>
-                <p className="text-xs text-muted-foreground">Due: {task.dueDate}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="bg-card border border-border rounded-lg p-6 space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Weekly Meeting Notes</h2>
-          <div className="space-y-3">
-            {meetingNotes.map((note) => (
-              <div key={note.id} className="border border-border rounded-md p-4 bg-secondary/30">
-                <p className="text-sm text-primary font-medium">{note.week}</p>
-                <p className="text-sm text-foreground mt-2">{note.summary}</p>
-                <ul className="mt-3 space-y-1">
-                  {note.actionItems.map((item) => (
-                    <li key={item} className="text-xs text-muted-foreground">• {item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
     </div>
   );
 }
